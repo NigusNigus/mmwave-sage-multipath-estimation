@@ -1,6 +1,6 @@
  ## Beamsteering-Based SAGE for mmWave Multipath Estimation
 
-This repository contains MATLAB code for estimating multipath channel
+This repository contains MATLAB code for estimating the multipath channel
 parameters in mmWave systems using a beamsteering-based SAGE algorithm.
 
 The implementation works on beamformed (beamspace) measurements obtained
