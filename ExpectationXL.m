@@ -18,7 +18,7 @@ for l = 1:ChPara.N
         Pa.AoD_l = ParaEst.thetaTX_MPCE(l);
         Pa.AoA_l = ParaEst.thetaRX_MPCE(l);
         Pa.tau_l = ParaEst.DelayE(l);
-        Pa.alpha_l =ParaEst.mx_MPCE(l);
+        Pa.alpha_l =ParaEst.Alpha_MPCE(l);
         
         % Constructing Angle Time Space of MPC
         A_Beamsteering_delay = Construction_ofMPC(Pa, ChPara);

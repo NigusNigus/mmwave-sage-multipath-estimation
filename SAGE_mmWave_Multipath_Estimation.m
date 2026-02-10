@@ -126,7 +126,7 @@ end
 
 disp('--- ESTIMATED PARAMETERS (relative gains) ---');
 
-alpha_hat = abs(ParaEst.mx_MPCE(1,:));
+alpha_hat = abs(ParaEst.Alpha_MPCE(1,:));
 alpha_rel = alpha_hat / max(alpha_hat);   % normalize to strongest MPC
 
 for l = 1:ChPara.N

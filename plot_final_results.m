@@ -123,7 +123,7 @@ legend([hTrue hEst],{'True MPC','Estimated MPC'}, ...
 alpha_true = abs([Paths_true.alpha]);
 alpha_true_dB = 20*log10(alpha_true / max(alpha_true));
 
-alpha_est = abs(ParaEst.mx_MPCE(1,:));
+alpha_est = abs(ParaEst.Alpha_MPCE(1,:));
 alpha_est_dB = 20*log10(alpha_est / max(alpha_est));
 
 figure; hold on; grid on;

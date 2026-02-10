@@ -33,11 +33,11 @@ ParaEst = struct();
 ParaEst.thetaTX_MPCE = thetaTX_MPCE;
 ParaEst.thetaRX_MPCE = thetaRX_MPCE;
 ParaEst.DelayE       = DelayE;
-ParaEst.mx_MPCE      = mx_MPCE;
+ParaEst.Alpha_MPCE      = mx_MPCE;
 
 disp('--- Initialization (MPC Parameters) ---');
 
-alpha_hat = abs(ParaEst.mx_MPCE);
+alpha_hat = abs(ParaEst.Alpha_MPCE);
 alpha_rel = alpha_hat / max(alpha_hat);
 
 for i = 1:ChPara.N
@@ -90,15 +90,25 @@ for n = 1:No_iteration
             ParaEst.DelayE(Le) = d_new;
         end
 
-        % amplitude
-        ParaEst.mx_MPCE(Le) = Z_Corr_mx_MPCE(ParaEst, Le, Dataxl, ChPara);
+       
+        %% Complex gain estimation for MPC Le
+        Pa.AoD_l = ParaEst.thetaTX_MPCE(Le);
+        Pa.AoA_l = ParaEst.thetaRX_MPCE(Le);
+        Pa.tau_l = ParaEst.DelayE(Le);
+        
+        % Constructing Angle Time Space of MPC
+        A_Beamsteering_delay = Construction_ofMPC(Pa, ChPara);
+
+        ParaEst.Alpha_MPCE(Le) = sum(conj(A_Beamsteering_delay(:)) .* Dataxl(:)) / (sum(abs(A_Beamsteering_delay(:)).^2));  % complex gain estimate
+
+        
 
     end
 
     % display ----
     disp(['--- Iteration ', num2str(n), ' (MPC Parameters) ---']);
 
-    alpha_hat = abs(ParaEst.mx_MPCE);
+    alpha_hat = abs(ParaEst.Alpha_MPCE);
     alpha_rel = alpha_hat / max(alpha_hat);
 
     for i = 1:ChPara.N
