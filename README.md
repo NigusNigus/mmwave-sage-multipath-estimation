@@ -28,5 +28,5 @@ https://ieeexplore.ieee.org/abstract/document/10683217
 - `plot_final_results.m` – plotting results
 
  ## To Run
-
+In MATLAB, run:
 SAGE_mmWave_Multipath_Estimation
