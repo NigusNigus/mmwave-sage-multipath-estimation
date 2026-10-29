@@ -10,7 +10,7 @@ Pa.tau_l = ParaEst.DelayE(Le);
 % Zold at current AoD
 Pa.AoD_l = ParaEst.thetaTX_MPCE(Le);
 A_old = Construction_ofMPC(Pa, ChPara); %Beamsteering-Response for old MPC parameters
-Zold = abs(sum(conj(A_old(:)) .* Dataxl(:)))/ (sum(abs(A_old(:)).^2));
+Zold = abs(sum(conj(A_old(:)) .* Dataxl(:))).^2 / (sum(abs(A_old(:)).^2));
 
 % Search for best AoD
 for i_angle = 1:numel(thetaTX_MPCE_K)
@@ -20,7 +20,7 @@ for i_angle = 1:numel(thetaTX_MPCE_K)
     % Constructing Angle Time Space of MPC
     A_Beamsteering_delay = Construction_ofMPC(Pa, ChPara);
 
-    Zvector(i_angle) = abs(sum(conj(A_Beamsteering_delay(:)) .* Dataxl(:))) / (sum(abs(A_Beamsteering_delay(:)).^2));
+    Zvector(i_angle) = abs(sum(conj(A_Beamsteering_delay(:)) .* Dataxl(:))).^2 / (sum(abs(A_Beamsteering_delay(:)).^2));
 
 end
 
